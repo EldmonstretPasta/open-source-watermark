@@ -14,9 +14,9 @@ TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 TextLabel.BackgroundTransparency = 1.000
 TextLabel.Size = UDim2.new(0, 200, 0, 50)
 TextLabel.Font = Enum.Font.Code
-TextLabel.TextColor3 = getgenv().wmcolor
+TextLabel.TextColor3 = Color3.fromRGB(getgenv().wmcolor)
 TextLabel.Text = getgenv().wmtext
-TextLabel.TextSize = 20.000
+TextLabel.TextSize = getgenv().textsize
 
 game:GetService("RunService").RenderStepped:Connect(function()
 	if getgenv().displayname == true then
