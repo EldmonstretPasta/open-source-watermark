@@ -1,25 +1,40 @@
-local WmMain = Instance.new("ScreenGui") -- Creates the screengui which holds the text, ik i could've used drawing lib but this is easier lol
+local ScreenGui = Instance.new("ScreenGui")
+local Watermark = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local Outline = Instance.new("Frame")
+local UIGradient = Instance.new("UIGradient")
+local UICorner_2 = Instance.new("UICorner")
 local TextLabel = Instance.new("TextLabel")
 
-WmMain.Parent = game.CoreGui -- Sets parent to coregui so it's harder for games to detect
-WmMain.Name = "Watermark"
+ScreenGui.Parent = game.CoreGui
 
-local alreadyexists = game.CoreGui:FindFirstChild("ScreenGui")
-if alreadyexists then
-	alreadyexists:Destroy()
-end
+Watermark.Name = "Watermark"
+Watermark.Parent = ScreenGui
+Watermark.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+Watermark.Position = UDim2.new(0.00533130253, 0, 0.008641975, 0)
+Watermark.Size = UDim2.new(0, 163, 0, 39)
 
-TextLabel.Parent = WmMain
+UICorner.CornerRadius = UDim.new(0, 1)
+UICorner.Parent = Watermark
+
+Outline.Name = "Outline"
+Outline.Parent = Watermark
+Outline.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Outline.Position = UDim2.new(0, 0, 0.846153855, 0)
+Outline.Size = UDim2.new(0, 163, 0, 6)
+
+UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(0.00, Color3.fromRGB(0, 255, 115)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(85, 170, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(255, 255, 255))}
+UIGradient.Parent = Outline
+
+UICorner_2.CornerRadius = UDim.new(0, 1)
+UICorner_2.Parent = Outline
+
+TextLabel.Parent = Watermark
 TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 TextLabel.BackgroundTransparency = 1.000
-TextLabel.Size = UDim2.new(0, 200, 0, 50)
-TextLabel.Font = Enum.Font.Code
-TextLabel.TextColor3 = Color3.fromRGB(getgenv().wmcolor)
-TextLabel.Text = getgenv().wmtext
-TextLabel.TextSize = getgenv().textsize
-
-game:GetService("RunService").RenderStepped:Connect(function()
-	if getgenv().displayname == true then
-		TextLabel.Text = getgenv().wmtext.. " | ".. game.Players.LocalPlayer.Name
-	end
-end)
+TextLabel.Size = UDim2.new(0, 163, 0, 33)
+TextLabel.Font = Enum.Font.SourceSans
+TextLabel.Text = _G.Text
+TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.TextSize = 18.000
+TextLabel.TextWrapped = true
